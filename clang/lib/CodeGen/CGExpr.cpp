@@ -34,6 +34,7 @@
 #include "llvm/IR/Intrinsics.h"
 #include "llvm/IR/LLVMContext.h"
 #include "llvm/IR/MDBuilder.h"
+#include "llvm/IR/Metadata.h"
 #include "llvm/Support/ConvertUTF.h"
 #include "llvm/Support/MathExtras.h"
 #include "llvm/Support/Path.h"
@@ -5113,6 +5114,19 @@ RValue CodeGenFunction::EmitCall(QualType CalleeType, const CGCallee &OrigCallee
                 SanitizerHandler::CFICheckFail, StaticData,
                 {CastedCallee, llvm::UndefValue::get(IntPtrTy)});
     }
+  }
+
+  // AutoSeccomp
+  if (CGM.getCodeGenOpts().AutoSeccomp &&
+      (!TargetDecl || !isa<FunctionDecl>(TargetDecl))) {
+    // TODO: Add an option to generalize pointers, similarly to CFI.
+    llvm::Metadata *MD =
+        CGM.CreateMetadataIdentifierForType(QualType(FnType, 0));
+    llvm::Value *TypeId = llvm::MetadataAsValue::get(getLLVMContext(), MD);
+    llvm::Value *CalleePtr = Callee.getFunctionPointer();
+    llvm::Value *CastedCallee = Builder.CreateBitCast(CalleePtr, Int8PtrTy);
+    Builder.CreateCall(CGM.getIntrinsic(llvm::Intrinsic::autoseccomp_type),
+                       {CastedCallee, TypeId});
   }
 
   CallArgList Args;

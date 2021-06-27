@@ -1956,6 +1956,12 @@ void CodeGenModule::SetFunctionAttributes(GlobalDecl GD, llvm::Function *F,
                                                CalleeIdx, PayloadIndices,
                                                /* VarArgsArePassed */ false)}));
   }
+
+  // AutoSeccomp
+  if (CodeGenOpts.AutoSeccomp) {
+    llvm::Metadata *MD = CreateMetadataIdentifierForType(FD->getType());
+    F->addTypeMetadata(0, MD);
+  }
 }
 
 void CodeGenModule::addUsedGlobal(llvm::GlobalValue *GV) {

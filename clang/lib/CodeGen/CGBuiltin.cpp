@@ -4359,6 +4359,11 @@ RValue CodeGenFunction::EmitBuiltinExpr(const GlobalDecl GD, unsigned BuiltinID,
     Value *ArgPtr = Builder.CreateLoad(SrcAddr, "ap.val");
     return RValue::get(Builder.CreateStore(ArgPtr, DestAddr));
   }
+  case Builtin::BI__builtin_autoseccomp: {
+    Function *F = CGM.getIntrinsic(Intrinsic::autoseccomp_restrict);
+    Builder.CreateCall(F);
+    return RValue::get(nullptr);
+  }
   }
 
   // If this is an alias for a lib function (e.g. __builtin_sin), emit

@@ -1135,6 +1135,8 @@ void PassManagerBuilder::populateLTOPassManager(legacy::PassManagerBase &PM) {
   // in ICP (which is performed earlier than this in the regular LTO pipeline).
   PM.add(createLowerTypeTestsPass(nullptr, nullptr, true));
 
+  PM.add(createAutoSeccompPass());
+
   if (OptLevel != 0)
     addLateLTOOptimizationPasses(PM);
 

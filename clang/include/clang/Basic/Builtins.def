@@ -1585,6 +1585,9 @@ BUILTIN(__builtin_ms_va_start, "vc*&.", "nt")
 BUILTIN(__builtin_ms_va_end, "vc*&", "n")
 BUILTIN(__builtin_ms_va_copy, "vc*&c*&", "n")
 
+// AutoSeccomp
+BUILTIN(__builtin_autoseccomp, "v", "n")
+
 #undef BUILTIN
 #undef LIBBUILTIN
 #undef LANGBUILTIN

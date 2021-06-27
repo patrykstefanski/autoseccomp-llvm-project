@@ -1531,6 +1531,11 @@ def int_preserve_struct_access_index : Intrinsic<[llvm_anyptr_ty],
 //===---------- Intrinsics to query properties of scalable vectors --------===//
 def int_vscale : Intrinsic<[llvm_anyint_ty], [], [IntrNoMem]>;
 
+//===---------------------------- AutoSeccomp -----------------------------===//
+def int_autoseccomp_type: Intrinsic<[], [llvm_ptr_ty, llvm_metadata_ty],
+                                    [IntrWillReturn]>;
+def int_autoseccomp_restrict : Intrinsic<[]>;
+
 //===----------------------------------------------------------------------===//
 
 //===----------------------------------------------------------------------===//

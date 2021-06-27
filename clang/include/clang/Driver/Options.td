@@ -720,6 +720,7 @@ def fastcp : Flag<["-"], "fastcp">, Group<f_Group>;
 def fastf : Flag<["-"], "fastf">, Group<f_Group>;
 def fast : Flag<["-"], "fast">, Group<f_Group>;
 def fasynchronous_unwind_tables : Flag<["-"], "fasynchronous-unwind-tables">, Group<f_Group>;
+def fautoseccomp : Flag<["-"], "fautoseccomp">, Group<f_Group>, Flags<[CC1Option]>;
 
 def fdouble_square_bracket_attributes : Flag<[ "-" ], "fdouble-square-bracket-attributes">,
   Group<f_Group>, Flags<[DriverOption, CC1Option]>,
@@ -1493,6 +1494,7 @@ def fno_asynchronous_unwind_tables : Flag<["-"], "fno-asynchronous-unwind-tables
 def fno_assume_sane_operator_new : Flag<["-"], "fno-assume-sane-operator-new">, Group<f_Group>,
   HelpText<"Don't assume that C++'s global operator new can't alias any pointer">,
   Flags<[CC1Option]>;
+def fno_autoseccomp : Flag<["-"], "fno-autoseccomp">, Group<f_Group>, Flags<[CC1Option]>;
 def fno_borland_extensions : Flag<["-"], "fno-borland-extensions">, Group<f_Group>;
 def fno_builtin : Flag<["-"], "fno-builtin">, Group<f_Group>, Flags<[CC1Option, CoreOption]>,
   HelpText<"Disable implicit builtin knowledge of functions">;

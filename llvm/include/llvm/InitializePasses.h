@@ -79,6 +79,7 @@ void initializeAssumptionCacheTrackerPass(PassRegistry&);
 void initializeAtomicExpandPass(PassRegistry&);
 void initializeAttributorLegacyPassPass(PassRegistry&);
 void initializeAttributorCGSCCLegacyPassPass(PassRegistry &);
+void initializeAutoSeccompPass(PassRegistry &);
 void initializeBBSectionsPreparePass(PassRegistry &);
 void initializeBDCELegacyPassPass(PassRegistry&);
 void initializeBarrierNoopPass(PassRegistry&);

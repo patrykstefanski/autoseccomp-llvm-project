@@ -3,6 +3,7 @@ add_llvm_component_library(LLVMipo
   ArgumentPromotion.cpp
   Attributor.cpp
   AttributorAttributes.cpp
+  AutoSeccomp.cpp
   BarrierNoopPass.cpp
   BlockExtractor.cpp
   CalledValuePropagation.cpp
